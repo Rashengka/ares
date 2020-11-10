@@ -1,0 +1,46 @@
+{varType array $address}
+{block content}
+<div class="row">
+    <div class="col-12 col-md-12">
+        <h1>Detail adresy #{$address[address_id]}</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-4">
+        <table class="table table-sm table-hover table-striped">
+            <tr>
+                <td class="text-right"><strong>ID:</strong></td>
+                <td>{$address[address_id]}</td>
+            </tr>
+            <tr>
+                <td class="text-right"><strong>Adresa:</strong></td>
+                <td>{$address[address]}</td>
+            </tr>
+            <tr n:if="$address[address2]">
+                <td class="text-right"><strong>Adresa 2:</strong></td>
+                <td>{$address[address2]}</td>
+            </tr>
+            <tr>
+                <td class="text-right"><strong>Okres:</strong></td>
+                <td>{$address[district]}</td>
+            </tr>
+            <tr>
+                <td class="text-right"><strong>ID Města:</strong></td>
+                <td>{$address[city_id]}</td>
+            </tr>
+            <tr>
+                <td class="text-right"><strong>PSČ:</strong></td>
+                <td>{$address[postal_code]}</td>
+            </tr>
+            <tr>
+                <td class="text-right"><strong>Telefon:</strong></td>
+                <td>{$address[phone]}</td>
+            </tr>
+            <tr>
+                <td class="text-right"><strong>Aktualizace:</strong></td>
+                <td>{$address[last_update]|date:"j.n.Y H:i:s"}</td>
+            </tr>
+        </table>
+    </div>
+</div>

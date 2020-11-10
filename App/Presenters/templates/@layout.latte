@@ -37,8 +37,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a n:href=":Feed:" n:class="nav-link, isLinkCurrent(':Feed:') ? active">
+                    <a n:href=":Feed:, true" n:class="nav-link, isLinkCurrent(':Feed:', [true]) ? active">
                         RSS feed
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a n:href=":Feed:, false" n:class="nav-link, isLinkCurrent(':Feed:', [false]) ? active">
+                        RSS feed (pubDate ISO 8601)
                     </a>
                 </li>
             </ul>
