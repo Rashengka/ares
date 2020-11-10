@@ -1,0 +1,18 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+
+body {
+    background-color: #F6F5F3;
+    background-image: url("https://files.nette.org/git/www/nette-logo-blue.png");
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: 100px;
+}
+
+.container {
+    background-color: #FFFFFF;
+    min-height: 100%;
+}

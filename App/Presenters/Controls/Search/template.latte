@@ -1,0 +1,15 @@
+{form aresForm, class => "ajax"}
+    <div class="row">
+        <div class="col-12 col-md-12">
+            <div class="alert alert-danger" n:foreach="$form->getErrors() as $error">{$error}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8 col-md-8">
+            {input ico}
+        </div>
+        <div class="col-4 col-md-4">
+            {input send}
+        </div>
+    </div>
+{/form}

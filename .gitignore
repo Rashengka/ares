@@ -1,0 +1,5 @@
+.idea
+.php_cs.cache
+vendor
+app/config/local.neon
+app/config/local.hqm.neon

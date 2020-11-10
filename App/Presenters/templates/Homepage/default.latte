@@ -1,0 +1,32 @@
+{templateType App\Presenters\templates\Homepage\DefaultParams}
+{block content}
+<div class="row">
+    <div class="col-12 col-md-12">
+        <h1>Hledání IČO v ARES</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-12">
+        {control search}
+    </div>
+</div>
+{snippet searchResult}
+    <div class="row mt-4" n:if="$searched || $aresResult">
+        <div class="col-12 col-md-12">
+            {if null !== $aresResult}
+                <div class="row mb-3">
+                    <div class="col-12 col-md-12">
+                        <h2>Nalezené výsledky</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        {control detail}
+                    </div>
+                </div>
+            {else}
+                <div class="alert alert-info text-center">Nebyl nalezen žádný výsledek.</div>
+            {/if}
+        </div>
+    </div>
+{/snippet}

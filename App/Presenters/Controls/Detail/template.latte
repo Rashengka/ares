@@ -1,0 +1,18 @@
+{templateType App\Presenters\Controls\Detail\TemplateParams}
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">{$aresResult->getCompanyName()}</h3>
+        <h4 class="card-subtitle text-muted mb-2">IČO {$aresResult->getSearchedId()}</h4>
+        <div class="card-text">
+            <p>
+                Platnost od {$aresResult->getDateIdCreate()|date:"j.n.Y"}
+            {if null !== $aresResult->getDateIdValid() && $aresResult->getDateIdValid()->format("U") < strtotime("now 00:00:00")}
+                    do {$aresResult->getDateIdValid()|date:"j.n.Y"}
+                {/if}
+            </p>
+            <p n:if="null !== $aresResult->getCompanyAddress()" class="mb-0">
+                {$aresResult->getCompanyAddress()->toString(false)|breaklines}
+            </p>
+        </div>
+    </div>
+</div>

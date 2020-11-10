@@ -1,0 +1,10 @@
+console:
+    url: https://example.org
+
+nettrine.dbal:
+    connection:
+        host: localhost
+        driver: pdo_mysql
+        dbname: ares
+        user: root
+        password: 123456
