@@ -30,7 +30,7 @@ class FeedPresenter extends Presenter
         $feed = new Feed();
 
         $channel = (new Channel())
-            ->title('Sakila addressed')
+            ->title('Sakila addresses')
             ->description('List of sakila addresses')
             ->url('https://hqm.cz')
             ->feedUrl($this->link("//this"))
