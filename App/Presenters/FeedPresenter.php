@@ -3,11 +3,11 @@ declare(strict_types = 1);
 
 namespace App\Presenters;
 
+use App\Core\Model\Feed\Channel;
 use App\Core\Model\Feed\Item;
 use Contributte\Application\Response\XmlResponse;
 use Doctrine\ORM\EntityManagerInterface;
 use Nette\Application\UI\Presenter;
-use Suin\RSSWriter\Channel;
 use Suin\RSSWriter\Feed;
 
 class FeedPresenter extends Presenter
@@ -25,7 +25,7 @@ class FeedPresenter extends Presenter
      */
     public function renderDefault(bool $valid): void
     {
-        Item::$dateFormat = $valid ? DATE_RSS : DATE_ISO8601;
+        Channel::$dateFormat = Item::$dateFormat = $valid ? DATE_RSS : DATE_ISO8601;
 
         $feed = new Feed();
 
