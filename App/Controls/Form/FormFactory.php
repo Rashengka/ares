@@ -25,6 +25,9 @@ class FormFactory
     public function makeBootstrap4(Form $form): void
     {
         $renderer = $form->getRenderer();
+        $renderer->wrappers['error']['container'] = 'div class=alerts';
+        $renderer->wrappers['error']['item'] = 'div class="alert alert-danger"';
+
         $renderer->wrappers['controls']['container'] = null;
         $renderer->wrappers['pair']['container'] = 'div class="form-group row"';
         $renderer->wrappers['pair']['.error'] = 'has-danger';

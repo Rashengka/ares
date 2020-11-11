@@ -1,4 +1,15 @@
 {varType array $address}
+
+{block scripts}
+    {include parent}
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("addressEmail").submit();
+        }
+    </script>
+{/block}
+
 {block content}
 <div class="row">
     <div class="col-12 col-md-12">
@@ -42,5 +53,8 @@
                 <td>{$address[last_update]|date:"j.n.Y H:i:s"}</td>
             </tr>
         </table>
+    </div>
+    <div class="col-12 col-md-6 col-lg-6" n:snippet="mail">
+        {control mail}
     </div>
 </div>

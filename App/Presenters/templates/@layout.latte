@@ -50,11 +50,13 @@
         </div>
     </div>
 
-    <div class="row" n:ifcontent n:snippet="flashes">
-        <div class="col-12 col-md-12" n:ifcontent>
-            <div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type">{$flash->message}</div>
+    {snippet flashes}
+        <div class="row" n:ifcontent>
+            <div class="col-12 col-md-12" n:ifcontent>
+                <div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type">{$flash->message}</div>
+            </div>
         </div>
-    </div>
+    {/snippet}
 
     {include content}
 </div>
