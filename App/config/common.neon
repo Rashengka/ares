@@ -1,4 +1,8 @@
 parameters:
+    addressDetail:
+        recaptcha:
+            publicKey: xxx
+            secretKey: xxx
 
 application:
     errorPresenter: Error
@@ -45,3 +49,7 @@ services:
 
     - App\Presenters\Controls\Search\SearchFormControlFactory
     - App\Presenters\Controls\Detail\DetailControlFactory
+
+    recaptchaParams:
+        factory: Nette\Utils\ArrayHash::from(%addressDetail.recaptcha%)
+        autowired: false

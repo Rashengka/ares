@@ -8,3 +8,9 @@ nettrine.dbal:
         dbname: ares
         user: root
         password: 123456
+
+parameters:
+    addressDetail:
+        recaptcha:
+            publicKey: xxx
+            secretKey: xxx

@@ -11,13 +11,10 @@ use Nette\Application\UI\Form;
 use Nette\Application\UI\Presenter;
 use Nette\Mail\Mailer;
 use Nette\Mail\Message;
-use Nette\Utils\Strings;
 use Tracy\Debugger;
 
 class AddressPresenter extends Presenter
 {
-    private const RECAPTCHA_PUBLIC_KEY = "6LeEmeEZAAAAAOQhYsrauKYfa_nXndjlH0rfAN_V";
-    private const RECAPTCHA_SECRET_KEY = "6LeEmeEZAAAAAPY3FWuzoA5zfWZNISEt2q1c5R0c";
     private const RECAPTCHA_POST_FIELD = "g-recaptcha-response";
     private const RECAPTCHA_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
 
@@ -34,9 +31,14 @@ class AddressPresenter extends Presenter
 
     private Mailer $mailer;
 
+    private string $recaptchaPublicKey;
+
+    private string $recaptchaSecretKey;
+
     public function __construct(EntityManagerInterface $em, FormFactory $formFactory, Mailer $mailer)
     {
         parent::__construct();
+
         $this->em = $em;
         $this->formFactory = $formFactory;
         $this->mailer = $mailer;
@@ -52,6 +54,10 @@ class AddressPresenter extends Presenter
         }
         // Session warmup
         $this->getSession()->getId();
+
+        $recaptcha = $this->context->getService("recaptchaParams");
+        $this->recaptchaPublicKey = $recaptcha["publicKey"] ?? "xxx";
+        $this->recaptchaSecretKey = $recaptcha["secretKey"] ?? "xxx";
     }
 
     public function actionDefault()
@@ -97,7 +103,7 @@ SQL;
 
         $form->addSubmit("send", "Sdílet")
             ->setHtmlAttribute("class", "g-recaptcha")
-            ->setHtmlAttribute("data-sitekey", self::RECAPTCHA_PUBLIC_KEY)
+            ->setHtmlAttribute("data-sitekey", $this->recaptchaPublicKey)
             ->setHtmlAttribute("data-callback", "onSubmit")
             ->setHtmlAttribute("data-action", "submit")
             ->setHtmlAttribute("data-badge", "bottomleft");
@@ -112,7 +118,7 @@ SQL;
             try {
                 $response = $guzzle->post(self::RECAPTCHA_VERIFY_URL, [
                     "form_params" => [
-                        "secret" => self::RECAPTCHA_SECRET_KEY,
+                        "secret" => $this->recaptchaSecretKey,
                         "response" => $recaptchaResponse,
                         "remoteip" => $this->getHttpRequest()->getRemoteAddress(),
                     ],
